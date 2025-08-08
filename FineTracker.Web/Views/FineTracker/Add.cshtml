@@ -1,0 +1,35 @@
+﻿@model FineTracker.Web.Models.ViewModels.AddFineViewModel
+
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>Add Fine - Admin Functionality</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+        <div class="mb-3">
+            <label>Select a User</label>
+            <select asp-for="UserId" asp-items="@Model.Users" class="form-control">
+            </select>
+        </div>
+
+        <div class="mb-3 form-group">
+            <label class="form-label">Reason</label>
+            <input class="form-control" type="text" asp-for="Reason" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Fine Amount</label>
+            <input class="form-control" type="number" asp-for="Amount" />
+        </div>
+
+        <div class="mb-3">
+            <input id="checkbox" asp-for="IsPaid" />
+            <label for="checkbox">Is Paid?</label>
+        </div>
+        <button type="submit" class="btn btn-dark">Add Fine</button>
+    </form>
+</div>

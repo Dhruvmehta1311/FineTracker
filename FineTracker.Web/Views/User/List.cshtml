@@ -1,0 +1,51 @@
+﻿@model List<FineTracker.Web.Models.ViewModels.UserFineViewModel>
+
+@{
+    decimal totalAmount = 0;
+
+    foreach (var amount in Model)
+    {
+        totalAmount += amount.TotalFine;
+    }
+}
+
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>All Users with Fine - Admin Functionality</h1>
+    </div>
+</div>
+
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>UserId</td>
+                <td>User Name</td>
+                <td>Total Fine</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td>@user.UserName</td>
+                        <td>@user.TotalFine</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td class="text-end"><strong>Total Fine of All Users:</strong></td>
+                <td>@totalAmount</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+
