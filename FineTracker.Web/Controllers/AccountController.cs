@@ -28,7 +28,7 @@ namespace FineTracker.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
-            if(ModelState.IsValid == false)
+            if (ModelState.IsValid == false)
             {
                 return View(registerViewModel);
             }
@@ -43,7 +43,15 @@ namespace FineTracker.Web.Controllers
             {
                 return RedirectToAction("Login");
             }
-            return View();
+            else
+            {
+                foreach (var error in identityUser.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(registerViewModel);
+            }
+
         }
 
         [HttpGet]
