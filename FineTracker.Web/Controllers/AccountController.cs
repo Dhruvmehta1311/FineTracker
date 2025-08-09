@@ -53,7 +53,12 @@ namespace FineTracker.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            var user = await _userManager.FindByNameAsync(loginViewModel.UserName) ?? await _userManager.FindByEmailAsync(loginViewModel.Email);
+            if (!ModelState.IsValid)
+            {
+                return View(loginViewModel);
+            }
+
+            var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
             if (user != null) {
                 var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
 
@@ -61,8 +66,26 @@ namespace FineTracker.Web.Controllers
                 {
                     return RedirectToAction("List", "User");
                 }
-                return RedirectToAction("Login");
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError(string.Empty, "Your account is locked out.");
+                }
+                else if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError(string.Empty, "You are not allowed to log in yet.");
+                }
+                else if (result.RequiresTwoFactor)
+                {
+                    ModelState.AddModelError(string.Empty, "Two-factor authentication is required.");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                }
+
+                return View(loginViewModel);
             }
+            ModelState.AddModelError(string.Empty, "Invalid username or password.");
             return RedirectToAction("Register");
         }
 

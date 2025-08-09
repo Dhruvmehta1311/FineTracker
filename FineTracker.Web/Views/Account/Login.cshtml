@@ -7,16 +7,12 @@
             <h1 class="mt-3 mb-3 h3">Login</h1>
             <form method="post">
                 <div class="container mb-3">
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" asp-for="Email" data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Email or Username — any one is fine" />
-                    </div>
-
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" asp-for="UserName" data-bs-toggle="tooltip" data-bs-placement="top"
                                title="Email or Username — any one is fine" />
+                               
                     </div>
 
                     <div class="mb-3">
