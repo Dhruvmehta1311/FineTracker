@@ -6,7 +6,7 @@ namespace FineTracker.Web.Models.ViewModels.AccountViewModels
     public class LoginViewModel
     {
         [Required]
-        [DisplayName("UserName")]
+        [DisplayName("User Name")]
         public string UserName { get; set; }
         [Required]
         public string Password { get; set; }

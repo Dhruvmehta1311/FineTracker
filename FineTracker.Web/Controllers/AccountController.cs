@@ -28,6 +28,10 @@ namespace FineTracker.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
+            if(ModelState.IsValid == false)
+            {
+                return View(registerViewModel);
+            }
             var model = new IdentityUser
             {
                 UserName = registerViewModel.UserName,
