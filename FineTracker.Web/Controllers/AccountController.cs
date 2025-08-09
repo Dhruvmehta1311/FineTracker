@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FineTracker.Web.Controllers
 {
-   
+
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -59,7 +59,8 @@ namespace FineTracker.Web.Controllers
             }
 
             var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
-            if (user != null) {
+            if (user != null)
+            {
                 var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
 
                 if (result.Succeeded)
