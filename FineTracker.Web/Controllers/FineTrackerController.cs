@@ -1,11 +1,13 @@
 ﻿using FineTracker.Web.Models.Domain;
 using FineTracker.Web.Models.ViewModels;
 using FineTracker.Web.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FineTracker.Web.Controllers
 {
+    [Authorize]
     public class FineTrackerController : Controller
     {
         private readonly IUserRepository _userRepository;
