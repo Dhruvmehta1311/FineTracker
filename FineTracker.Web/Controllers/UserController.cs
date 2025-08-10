@@ -30,8 +30,19 @@ namespace FineTracker.Web.Controllers
                 TotalFine = x.TotalFine
             }).ToList();
 
+            var viewModel = new UserListViewModel
+            {
+                UserFineViewModel = totalFinePerUser,
+                AddUserViewModel = new AddUserViewModel()
+            };
 
-            return View(totalFinePerUser);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddUser(AddUserViewModel addUserViewModel)
+        {
+            return View();
         }
     }
 }
