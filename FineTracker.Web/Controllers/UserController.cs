@@ -42,6 +42,26 @@ namespace FineTracker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> List(AddUserViewModel addUserViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                var usersWithFines = _dbContext.Users
+            .Include(u => u.Fines)
+            .ToList();
+
+                var totalFinePerUser = usersWithFines.Select(x => new UserFineViewModel
+                {
+                    UserId = x.Id,
+                    UserName = x.UserName,
+                    TotalFine = x.TotalFine
+                }).ToList();
+
+                var viewModel = new UserListViewModel
+                {
+                    UserFineViewModel = totalFinePerUser,
+                    AddUserViewModel = addUserViewModel
+                };
+                return View(viewModel);
+            }
             await _userRepository.AddUserAsync(addUserViewModel);
             return RedirectToAction("List");
         }

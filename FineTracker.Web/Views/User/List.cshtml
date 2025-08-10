@@ -9,7 +9,6 @@
     }
 }
 
-
 <div class="bg-secondary bg-opacity-10 py-2">
     <div class="d-flex justify-content-between align-items-center">
         <h1>All Users with Fine - Admin Functionality</h1>
@@ -31,10 +30,12 @@
                     <div>
                         <label class="form-label">User Name</label>
                         <input type="text" class="form-control" asp-for="AddUserViewModel.UserName" />
+                        <span asp-validation-for="AddUserViewModel.UserName" class="text-danger"></span>
                     </div>
                     <div>
                         <label class="form-label">Email</label>
                         <input type="text" class="form-control" asp-for="AddUserViewModel.Email" />
+                        <span asp-validation-for="AddUserViewModel.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -78,3 +79,13 @@
 
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(function () {
+            if ('@(!ViewData.ModelState.IsValid)' === 'True') {
+                $('#myModal').modal('show');
+            }
+        });
+    </script>
+}
