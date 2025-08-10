@@ -48,7 +48,7 @@ namespace FineTracker.Web.Controllers
 
             getUserByID.TotalFine += addFineModel.Amount;
 
-            var addedUser = await _userRepository.AddUserAsync(domainModel);
+            var addedUser = await _userRepository.AddFineAsync(domainModel);
 
             return RedirectToAction("List", "User");
         }

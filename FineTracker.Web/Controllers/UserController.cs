@@ -39,10 +39,11 @@ namespace FineTracker.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> AddUser(AddUserViewModel addUserViewModel)
+        [HttpPost]
+        public async Task<IActionResult> List(AddUserViewModel addUserViewModel)
         {
-            return View();
+            await _userRepository.AddUserAsync(addUserViewModel);
+            return RedirectToAction("List");
         }
     }
 }
