@@ -20,7 +20,7 @@ namespace FineTracker.Web.Controllers
         public async Task<IActionResult> Add()
         {
             var allUsers = await _userRepository.GetAllUsersAsync();
-
+            
             var model = new AddFineViewModel
             {
                 Users = allUsers.Select(u => new SelectListItem
@@ -36,6 +36,7 @@ namespace FineTracker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddFineViewModel addFineModel)
         {
+            var getUserByID = await _userRepository.GetTotalFineById(addFineModel.UserId);
 
             var domainModel = new FineModel
             {
@@ -44,6 +45,8 @@ namespace FineTracker.Web.Controllers
                 Reason = addFineModel.Reason,
                 IsPaid = addFineModel.IsPaid,
             };
+
+            getUserByID.TotalFine += addFineModel.Amount;
 
             var addedUser = await _userRepository.AddUserAsync(domainModel);
 

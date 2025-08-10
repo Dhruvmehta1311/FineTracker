@@ -10,7 +10,7 @@ namespace FineTracker.Web.Models.Domain
         public bool IsActive { get; set; } = true; 
         public DateTime DateJoined { get; set; } = DateTime.Now; 
 
-        public int TotalFine { get; set; }
+        public decimal TotalFine { get; set; }
 
         // Navigation property
         public ICollection<FineModel> Fines { get; set; }

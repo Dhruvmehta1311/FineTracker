@@ -1,6 +1,8 @@
 ﻿using FineTracker.Web.Data;
 using FineTracker.Web.Models.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace FineTracker.Web.Repository
 {
@@ -25,6 +27,14 @@ namespace FineTracker.Web.Repository
             await _dbContext.Fines.AddAsync(fineModel);
             await _dbContext.SaveChangesAsync();
             return fineModel;
+        }
+
+        public async Task<UserModel> GetTotalFineById(int userID)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == userID);
+
+            return user;
+
         }
     }
 }

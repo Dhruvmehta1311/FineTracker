@@ -27,7 +27,7 @@ namespace FineTracker.Web.Controllers
             {
                 UserId = x.Id,
                 UserName = x.UserName,
-                TotalFine = x.Fines.Sum(f => f.Amount)
+                TotalFine = x.TotalFine
             }).ToList();
 
 

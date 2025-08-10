@@ -6,5 +6,6 @@ namespace FineTracker.Web.Repository
     {
         Task<List<UserModel>> GetAllUsersAsync();
         Task<FineModel> AddUserAsync(FineModel fineModel);
+        Task<UserModel> GetTotalFineById(int userID);
     }
 }
