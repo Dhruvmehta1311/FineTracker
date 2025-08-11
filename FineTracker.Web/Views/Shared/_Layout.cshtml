@@ -11,14 +11,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FineTracker.Web.styles.css" asp-append-version="true" />
 </head>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        [...tooltipTriggerList].forEach(function (tooltipTriggerEl) {
-            new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-    });
-</script>
 
 <body>
     <header>
@@ -42,6 +34,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" asp-action="Add" asp-controller="FineTracker">Add Fine</a></li>
                                     <li><a class="dropdown-item" asp-action="List" asp-controller="User">Show all Fines</a></li>
+                                    <li><a class="dropdown-item" asp-action="List" asp-controller="User">Show all Users Accounts</a></li>
                                 </ul>
                             </li>
                         </ul>
